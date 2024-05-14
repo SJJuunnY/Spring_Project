@@ -1,8 +1,8 @@
-package com.example.shoppingmall.product;
+package com.example.shoppingmall.product.product;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +35,32 @@ public class ProductRepository {
         return product_table.values().stream().toList();
     }
     public List<Product> findProducts(int limit, int currentPage, int categoryId) {
-        List<Product> products = product_table.values().stream().toList();
-        List<Product> selectedProducts = products.stream().filter(product -> product.getCategoryId()== categoryId ).toList();
-        return selectedProducts;
+//        List<Product> products = product_table.values().stream().toList();
+//        List<Product> resultProducts = products.stream().filter(product -> product.getCategoryId()== categoryId ).toList();
+
+        List<Product> resultProducts = new ArrayList<>();
+        for(Product product : product_table.values()){
+            if(product.getCategoryId() == categoryId){
+                resultProducts.add(product);
+            }
+        }
+
+        return resultProducts;
+    }
+
+    public boolean deleteProduct(int id) {
+        product_table.remove(id);
+        if(product_table.get(id)==null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void deleteProducts(List<Integer> productIds) {
+        for(int idx = 0; idx < productIds.size(); idx++){
+            product_table.remove(productIds.get(idx));
+        }
     }
 }

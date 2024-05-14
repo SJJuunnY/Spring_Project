@@ -1,4 +1,4 @@
-package com.example.shoppingmall.product;
+package com.example.shoppingmall.product.product;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,6 @@ public class ProductService {
     ProductRepository productRepository;
 
     public Product registerProduct(Product product) {
-        System.out.println("hihihi");
         System.out.println("/products : service - " + product.getName());
         return productRepository.save(product);
     }
@@ -25,5 +24,13 @@ public class ProductService {
     }
     public List<Product> findProducts(int limit, int currentPage,int categoryId){
         return productRepository.findProducts(limit,currentPage,categoryId);
+    }
+
+    public boolean deleteProduct(int id) {
+        return productRepository.deleteProduct(id);
+    }
+
+    public void deleteProducts(List<Integer> productIds) {
+        productRepository.deleteProducts(productIds);
     }
 }

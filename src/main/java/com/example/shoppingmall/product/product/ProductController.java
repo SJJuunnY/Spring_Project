@@ -1,18 +1,15 @@
-package com.example.shoppingmall.product;
+package com.example.shoppingmall.product.product;
 
 import com.example.shoppingmall.utils.Validator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.LogFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -58,6 +55,7 @@ public class ProductController {
         log.trace("currentPage = {}",currentPage);
         log.trace("categoryId = {}",categoryId);
 
+        //TODO null체크는 어디서 해야할까
         if(categoryId == null){
             List<Product> products = productService.findProducts(limit,currentPage);
             return new ResponseEntity<>(products, HttpStatus.OK);
@@ -69,7 +67,7 @@ public class ProductController {
     }
     // 상품 개별 조회
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> findProduct(@PathVariable int id){
+    public ResponseEntity<Product> findProduct(@PathVariable(value="id") int id){
         // 1. Product반환필드 : id가 없어요
         // 2. id숫자만 들어온거 맞는지 유효성 검사 추가
         System.out.println(id);
@@ -86,4 +84,32 @@ public class ProductController {
 
         return new ResponseEntity<>(resultProduct,HttpStatus.OK);
     }
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<Product> deleteProduct(@PathVariable(value="id")  int id){
+        System.out.println(id);
+        if( !Validator.isNumber(id) || productService.findProduct(id)==null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        //TODO 삭제 성공, 실패 한단하려면 필요한 데이터?
+        boolean result = productService.deleteProduct(id);
+        if(result)
+            return new ResponseEntity<>(HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @PostMapping("/products/delete")
+    public ResponseEntity<Product> deleteProducts(@RequestBody Map<String, ArrayList<Integer>> deleteRequest){
+        List<Integer> productsIds = deleteRequest.get("ids");
+
+        if(productsIds.isEmpty()){
+            log.info("productsIds가 없네요");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        productService.deleteProducts(productsIds);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
