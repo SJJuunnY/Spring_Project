@@ -12,7 +12,7 @@ public class OrderService {
 
     public void orderProduct(Order order) {
         log.info("orderId = {} ", order.orderId);
-        log.info("order = {} ", order.getProduct())
+        log.info("order = {} ", order.getProduct());
 
         orderRepository.createOrder(order);
     }

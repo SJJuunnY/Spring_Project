@@ -1,0 +1,9 @@
+CREATE DATEBASE shoppingmall
+
+CREATE TABLE member(
+    userId INTEGER AUTO_INCREMENT PRIMARY KEY,
+    pw VARCHAR(20) NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    contact VARCHAR(20) NOT NULL,
+)

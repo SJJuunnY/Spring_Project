@@ -1,8 +1,13 @@
 package com.example.shoppingmall.utils;
 
+import com.fasterxml.jackson.core.JsonParser;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
+
+import java.util.Map;
+
+import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
 
 //public class ApiUtils<T> {
 //
@@ -34,7 +39,7 @@ public class ApiUtils<T> {
         return new ApiResult(true, data, null);
     }
 
-    public static ApiResult error(String message, HttpStatus httpStatus) {
+    public static <T> ApiResult<T> error(T message, HttpStatus httpStatus) {
         return new ApiResult(false,
                 null,
                 new ApiError(message, httpStatus));
@@ -50,11 +55,11 @@ public class ApiUtils<T> {
     }
 
     @Getter
-    static class ApiError {
-        String message;
+    static class ApiError<T> {
+        T message;
         HttpStatus httpStatus;
 
-        ApiError(String message, HttpStatus httpStatus) {
+        ApiError(T message, HttpStatus httpStatus) {
             this.message = message;
             this.httpStatus = httpStatus;
         }

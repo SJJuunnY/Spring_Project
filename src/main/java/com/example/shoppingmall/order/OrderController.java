@@ -2,10 +2,12 @@ package com.example.shoppingmall.order;
 
 import com.example.shoppingmall.product.product.Product;
 import com.example.shoppingmall.product.product.ProductService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,12 +16,11 @@ public class OrderController {
 
     OrderService orderService;
     ProductService productService;
-    OrderDto orderDto;
 
     @PostMapping("/orders")
 //    public void orderProduct(@RequestBody Order order) {
 //    public void orderProduct(@RequestBody int productId, int count) {
-    public void orderProduct(@RequestBody OrderDto orderDto){
+    public void orderProduct(@RequestBody @Valid OrderDto orderDto){
 //        orderService.orderProduct();
         Product orderedProduct = productService.findProduct(orderDto.productId);
 
