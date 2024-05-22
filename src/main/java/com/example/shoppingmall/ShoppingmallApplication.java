@@ -6,11 +6,13 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ServletComponentScan
 //@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 //@ConfigurationProperties("app.datasource")
+@EnableJpaRepositories
 public class ShoppingmallApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ShoppingmallApplication.class, args);

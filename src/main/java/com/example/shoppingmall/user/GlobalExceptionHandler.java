@@ -1,4 +1,4 @@
-package com.example.shoppingmall.product.user;
+package com.example.shoppingmall.user;
 
 import com.example.shoppingmall.utils.ApiUtils;
 import lombok.extern.slf4j.Slf4j;

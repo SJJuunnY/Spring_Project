@@ -1,9 +1,6 @@
 package com.example.shoppingmall.order;
 
-import com.example.shoppingmall.product.product.Product;
-import com.example.shoppingmall.product.product.ProductRepository;
-import com.example.shoppingmall.product.product.ProductService;
-import lombok.AllArgsConstructor;
+import com.example.shoppingmall.product.ProductRepository;
 import lombok.Getter;
 import lombok.Setter;
 

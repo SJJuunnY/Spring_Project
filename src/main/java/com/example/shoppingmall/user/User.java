@@ -1,21 +1,20 @@
-package com.example.shoppingmall.product.user;
+package com.example.shoppingmall.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
-//@Entity
+@NoArgsConstructor
+@Builder
 //@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class User {
-//    @Id
+    @Id
     private int id; // PK
     private String userId;
     private String name;
@@ -26,10 +25,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
+                "id=" + id +
                 ", userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
                 ", pw='" + pw + '\'' +
+                ", contact='" + contact + '\'' +
                 '}';
     }
 }

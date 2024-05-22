@@ -1,13 +1,9 @@
 package com.example.shoppingmall.order;
 
-import com.example.shoppingmall.product.product.Product;
-import com.example.shoppingmall.product.product.ProductService;
+import com.example.shoppingmall.product.Product;
+import com.example.shoppingmall.product.ProductService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.aspectj.weaver.ast.Or;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

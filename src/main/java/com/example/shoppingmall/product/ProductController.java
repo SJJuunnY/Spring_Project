@@ -1,4 +1,4 @@
-package com.example.shoppingmall.product.product;
+package com.example.shoppingmall.product;
 
 import com.example.shoppingmall.utils.Validator;
 import lombok.AllArgsConstructor;
@@ -19,7 +19,6 @@ public class ProductController {
 
 //    @Autowired // DI
     ProductService productService;
-//    Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     // 상품 개별 등록
     @PostMapping("/products")
@@ -37,11 +36,9 @@ public class ProductController {
             }
 
             return new ResponseEntity<>(HttpStatus.CREATED);
-//            return "등록 성공!";
         }
         else
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
-//            return "name 또는 price가 형식에 맞지 않습니다.";
     }
 
     // 상품 전체, 카테고리별 조회
@@ -73,10 +70,9 @@ public class ProductController {
         System.out.println(id);
         if(Validator.isNumber(id)) {
             //TODO log INFO 레벨 id type찍기
-//            logger.error("ERROR");
+            log.trace("Error");
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-//        Product resultProduct = productService.findProduct(id);
         Product resultProduct = productService.findProduct(id);
 
         if(resultProduct == null)

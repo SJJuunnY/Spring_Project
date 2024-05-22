@@ -1,4 +1,4 @@
-package com.example.shoppingmall.product.product;
+package com.example.shoppingmall.product;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

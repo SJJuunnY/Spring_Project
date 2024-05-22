@@ -8,32 +8,6 @@ import org.springframework.http.HttpStatus;
 import java.util.Map;
 
 import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
-
-//public class ApiUtils<T> {
-//
-//    public ApiResult<T> success(T data){
-//        return new ApiResult<T>(true, data, null);
-//    }
-//
-//    public ApiResult<T> error(String message, HttpStatus httpStatus){
-//        return new ApiResult<T>(false, null, new ApiError(message,httpStatus));
-//    }
-//
-//
-//    @Getter
-//    class ApiError {
-//        String message;
-//        HttpStatus httpStatus;
-//
-//        ApiError(String message, HttpStatus httpStatus) {
-//            this.message = message;
-//            this.httpStatus = httpStatus;
-//        }
-//    }
-//
-//
-//}
-
 public class ApiUtils<T> {
     public static <T> ApiResult<T> success(T data) {
         return new ApiResult(true, data, null);

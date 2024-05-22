@@ -1,4 +1,4 @@
-package com.example.shoppingmall.product.user;
+package com.example.shoppingmall.user;
 
 import com.example.shoppingmall.utils.ApiUtils;
 import com.example.shoppingmall.utils.DuplicateUserEx;
@@ -28,18 +28,22 @@ import static com.example.shoppingmall.utils.ApiUtils.success;
 public class UserController {
     UserService userService ;
 
-////    @PostMapping("/dbtest/make")
-////    public void makeUser(
-////            @RequestBody @Valid User user
-////    ){
-////        userService.makeUser(user);
-////    }
-////    @PostMapping("/dbtest/find")
-////    public void findUser(
-////            @RequestBody int userId
-////    ){
-//        userService.findUser(userId);
-//    }
+    @PostMapping("/dbtest/make")
+    public ResponseEntity makeUser(
+            @RequestBody @Valid User user
+    ){
+        User Createduser = userService.signUp(user);
+        return new ResponseEntity<>(Createduser,HttpStatus.OK);
+    }
+
+    @PostMapping("/dbtest/find")
+    public ResponseEntity findUser(
+            @RequestBody @Valid Map<String, Integer> req
+    ){
+        System.out.println(req.get("userId"));
+        User selectedUser = userService.findUser(req.get("userId"));
+        return new ResponseEntity<>(selectedUser,HttpStatus.OK);
+    }
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody @Valid User user, Errors error){
