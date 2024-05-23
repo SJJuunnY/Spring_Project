@@ -7,7 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 public class Product {
+    @Id
     private int id;
     private String name;
     private int price;

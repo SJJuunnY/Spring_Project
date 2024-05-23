@@ -37,12 +37,15 @@ public class UserController {
     }
 
     @PostMapping("/dbtest/find")
-    public ResponseEntity findUser(
+    public ApiResult findUser(
             @RequestBody @Valid Map<String, Integer> req
     ){
-        System.out.println(req.get("userId"));
-        User selectedUser = userService.findUser(req.get("userId"));
-        return new ResponseEntity<>(selectedUser,HttpStatus.OK);
+        System.out.println("userId : "+ req.get("id"));
+        User selectedUser = userService.findUser(req.get("id"));
+        if(selectedUser == null)
+            return error("사용자 없음",HttpStatus.BAD_REQUEST);
+//        return new ResponseEntity<>(selectedUser,HttpStatus.OK);
+        return success(selectedUser);
     }
 
     @PostMapping("/signup")

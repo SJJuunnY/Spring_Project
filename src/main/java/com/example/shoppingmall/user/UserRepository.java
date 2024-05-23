@@ -25,10 +25,10 @@ public class UserRepository {
         System.out.println(savedUser.toString());
         return savedUser.toString();
     }
-    public User findById(int userId){
+    public User findById(int id){
 //        User findUser = entityManager.find(User.class, userId); //반환타입이 맴버
-        System.out.println("UserRepo findById : "+userId);
-        return entityManager.find(User.class, userId);
+        System.out.println("UserRepo findById : "+id);
+        return entityManager.find(User.class, id);
     }
 
     @Autowired

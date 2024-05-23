@@ -7,3 +7,7 @@ CREATE TABLE member(
     email VARCHAR(20) NOT NULL,
     contact VARCHAR(20) NOT NULL,
 )
+
+CREATE TABLE product{
+
+}

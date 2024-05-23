@@ -12,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 //@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class User {
     @Id
